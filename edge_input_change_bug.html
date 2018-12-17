@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			body, input{
+				font-family: Tahoma;
+				font-size: 14px;
+			}
+		</style>
+		<title>Focus Problem</title>
+	</head>
+	<body>
+		<p>Start typing in the first input and press Enter Key</p>
+		<p>* The input has an event listener for the keydown event that fires blur event.  </p>
+		<p>* Input Change Event should be fired </p>
+		<p>* Cursor should be disappeared </p>
+		<input type="text" id="input_1" >
+		
+		<div style="width: 200px; height:50px; background: #f3f3f3">
+		<span id="log2">Blur Event is not fired yet</span><br><span id="log3"></span><br><span id="log">Change Event is not fired yet</span></div>
+
+		<script type="text/javascript" charset="utf-8">
+			var input1 = document.getElementById("input_1"),
+				log1 = document.getElementById("log"),
+				log2 = document.getElementById("log2"),
+				log3 = document.getElementById("log3");
+
+			input1.addEventListener("keydown", function(e){
+				if (e.keyCode === 13) {
+					input1.blur();
+					log2.innerHTML = "Blur Event is fired !";
+					log2.style.color = "red";
+					log3.innerHTML = "Active Element is : " + document.activeElement.nodeName;
+				}
+			});
+
+			input1.addEventListener("change", function(){
+				log1.innerHTML = "Change Event is fired !";
+				log1.style.color = "red";
+			});
+			
+		</script>
+	</body>
+</html>
